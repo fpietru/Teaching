@@ -1,70 +1,52 @@
+/*
+	Zadanie: https://cses.fi/problemset/task/1648/
+*/
 #include <bits/stdc++.h>
 using namespace std;
+using ll = long long;
 
-constexpr int base = (1<<20), INF = 1e9;
-int Tree[2*base+10], Lazy[2*base+10];
+constexpr int base = (1<<18);
+ll Tree[2*base];
 
-void lazypush(int v)
-{
-	if (Lazy[v] != 0)
-	{
-		Tree[2*v] = Lazy[v];
-		Lazy[2*v] = Lazy[v];
-		Tree[2*v+1] = Lazy[v];
-		Lazy[2*v+1] = Lazy[v];
-	}
-	Lazy[v] = 0;
-}
-
-void insert(int v, int lw, int rw, int L, int R, int val)
-{
-	if (rw < L || R < lw)
-		return;
-	else if (L <= lw && rw <= R)
-	{
-		Tree[v] = val;
-		Lazy[v] = val;
-	}
-	else
-	{
-		lazypush(v);
-		int mid = (lw + rw) / 2;
-		insert(2*v, lw, mid, L, R, val);
-		insert(2*v+1, mid+1, rw, L, R, val);
-		Tree[v] = max(Tree[2*v], Tree[2*v+1]);
+void update(int v, ll x) {
+	v += base;
+	Tree[v] = x;
+	while (v) {
+		v /= 2;
+		Tree[v] = Tree[2*v] + Tree[2*v+1];
 	}
 }
 
-int query(int v, int lw, int rw, int L, int R)
-{
-	if (rw < L || R < lw)
-		return -INF;
-	else if (L <= lw && rw <= R)
-		return Tree[v];
-	else
-	{
-		lazypush(v);
-		int mid = (lw + rw) / 2;
-		int Lson = query(2*v, lw, mid, L, R);
-		int Rson = query(2*v+1, mid+1, rw, L, R);
-		return max(Lson, Rson);
+ll query(int a, int b) {
+	ll res = 0;
+	a += base - 1;
+	b += base + 1;
+	while ((a/2) != (b/2)) {
+		if (a%2 == 0) res += Tree[a+1];
+		if (b%2 == 1) res += Tree[b-1];
+		a /= 2;
+		b /= 2;
 	}
+	return res;
 }
 
-int main()
-{
+int main () {
 	ios_base::sync_with_stdio(0);
-	cout.tie(0), cin.tie(0);
+	cin.tie(0), cout.tie(0);
 	
-	int d, n; cin >> d >> n;
-	for (int i=0; i<n; i++)
-	{
-		int l, x; cin >> l >> x;
-		int mx_h = query(1, 0, base-1, x, x+l-1);
-		insert(1, 0, base-1, x, x+l-1, mx_h+1); 
+	int n, q; cin >> n >> q;
+	for (int i=1; i<=n; i++) {
+		int x; cin >> x;
+		update(i, x);
 	}
 	
-	cout << query(1, 0, base-1, 0, d) << "\n";
-	
+	while (q--) {
+		int op, a, b; cin >> op >> a >> b;
+		if (op == 1) {
+			update(a, b);
+		}
+		else cout << query(a, b) << "\n";
+	}
+
 	return 0;
 }
