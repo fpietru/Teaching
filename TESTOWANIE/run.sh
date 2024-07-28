@@ -1,3 +1,6 @@
+make gen
+make wzo
+make brut
 i=0
 while true
 do
@@ -12,7 +15,7 @@ do
 		cat in1
 		echo "Brut:"
 		cat out1
-		echo "Rozw:"
+		echo "Wzo:"
 		cat out2
 		break
 	fi

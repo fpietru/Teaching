@@ -5,7 +5,7 @@ using ll = long long;
 #define FR first
 #define SD second
 #define PB push_back
-#define deb(...) logger(#__VA_ARGS__, __VA_ARGS__) // debugging /*
+#define deb(...) logger(#__VA_ARGS__, __VA_ARGS__) // /*
 template <typename T> struct tag:reference_wrapper <T>{ using reference_wrapper <T>::reference_wrapper; };
 template <typename T1, typename T2> static inline tag <ostream> operator<<(tag <ostream> os, pair<T1, T2> const& p){ return os.get()<<"{"<<p.first<<", "<<p.second<<"}", os;}
 template <typename Other> static inline tag <ostream> operator<<(tag <ostream> os, Other const& o){ os.get()<<o; return os; }
@@ -17,6 +17,18 @@ template <typename ...Args> void logger(string vars, Args&&... values) { cout<<"
 int main() {
 	ios_base::sync_with_stdio(0);
 	cin.tie(0), cout.tie(0);
+
+
+	vector<int> vec = {123, 321, 451, 912, 23, 231};
+	
+	cout << vec << "\n";
+	
+	
+	pii para;
+	para.FR = 1;
+	para.SD = 2;
+	
+	cout << para << "\n";
 
 	return 0;
 }

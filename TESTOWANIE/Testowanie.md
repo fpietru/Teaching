@@ -35,7 +35,7 @@ int RAND(int a, int b) {
 Taki rand potrzebuje seed'a:
 ``` cpp
 srand(time(NULL)); // zmienia się co sekunde
-srand(argv[1]); // sami ustalamy seed'a
+srand(stoi(argv[1])); // sami ustalamy seed'a
 ```
 ### Argumenty do programu
 ``` cpp
