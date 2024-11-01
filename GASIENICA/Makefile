@@ -1,0 +1,1 @@
+CXXFLAGS = -o -std=c++20 -Wall -Wextra -Wunused -Wuninitialized -O1
