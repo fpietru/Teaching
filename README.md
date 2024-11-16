@@ -1,1 +1,2 @@
-# Koło Algorytmiczne w XVIII LO. Zamoyskiego
+# Summary:
+My notes from teaching Algorithms and Data Structures at XVIII LO. im Jana Zamoyskiego in Warsaw.
