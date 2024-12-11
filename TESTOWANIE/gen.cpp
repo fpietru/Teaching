@@ -20,7 +20,7 @@ int main (int argc, char *argv[]) {
 	for (int i=1; i<=q; i++) {		
 		int op = RAND(1, 2);
 		if (op == 1) {
-			cout << op << " " << RAND(1, n) << " " << RAND(2e16, 2e17) << "\n";
+			cout << op << " " << RAND(1, n) << " " << RAND(200, 300) << "\n";
 		}
 		else {
 			int a = RAND(1, n); 
